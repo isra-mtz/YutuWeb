@@ -1,0 +1,130 @@
+<nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
+  <div class="container">
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/inicio']">
+      <!-- <img src="./assets/img/brand/argon-white.png"> -->
+      YutuSalud
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
+      <div class="navbar-collapse-header">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a [routerLink]="['/inicio']">
+              <img src="./assets/img/brand/blue.png">
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
+                  [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Ambulancias</span>
+          </a>
+          <div class="dropdown-menu">
+            <a [routerLink]="['/add-ambulancia']" class="dropdown-item">Nuevo</a>
+            <a [routerLink]="['/list-ambulancias']" class="dropdown-item">Consulta</a>
+            <a [routerLink]="['/tracker-ambulancias']" class="dropdown-item">Rastreo</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Médicos</span>
+          </a>
+          <div class="dropdown-menu">
+            <a [routerLink]="['/add-medico']" class="dropdown-item">Nuevo</a>
+            <a [routerLink]="['/list-medicos']" class="dropdown-item">Consulta</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Hospitales</span>
+          </a>
+          <div class="dropdown-menu">
+            <a [routerLink]="['/add-hospital']" class="dropdown-item">Nuevo</a>
+            <a [routerLink]="['/list-hospitales']" class="dropdown-item">Consulta</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Clínicas</span>
+          </a>
+          <div class="dropdown-menu">
+            <a [routerLink]="['/add-clinica']" class="dropdown-item">Nuevo</a>
+            <a [routerLink]="['/list-clinicas']" class="dropdown-item">Consulta</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Farmacias</span>
+          </a>
+          <div class="dropdown-menu">
+            <a [routerLink]="['/add-farmacia']" class="dropdown-item">Nuevo</a>
+            <a [routerLink]="['/list-farmacias']" class="dropdown-item">Consulta</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Laboratorios</span>
+          </a>
+          <div class="dropdown-menu">
+            <a [routerLink]="['/add-laboratorio']" class="dropdown-item">Nuevo</a>
+            <a [routerLink]="['/list-laboratorios']" class="dropdown-item">Consulto</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <i class="ni ni-collection d-lg-none"></i>
+            <span class="nav-link-inner--text">Terapeutas</span>
+          </a>
+          <div class="dropdown-menu">
+            <a [routerLink]="['/add-terapeuta']" class="dropdown-item">Nuevo</a>
+            <a [routerLink]="['/list-terapeutas']" class="dropdown-item">Consulta</a>
+          </div>
+        </li>
+
+      </ul>
+
+      <ul class="navbar-nav align-items-lg-center ml-lg-auto">  
+        <li class="nav-item d-none d-lg-block ml-lg-4">
+          <button class="btn btn-neutral btn-icon" [routerLink]="['/login']">
+            <span class="btn-inner--icon">
+              <i class="fa fa-sign-in mr-2"></i>
+            </span>
+            <span class="nav-link-inner--text">Ingresar</span>
+          </button>
+          <!-- <a href="https://www.creative-tim.com/product/argon-design-system-angular?ref=adsa-navbar" target="_blank" class="btn btn-neutral btn-icon">
+            <span class="btn-inner--icon">
+              <i class="fa fa-cloud-download mr-2"></i>
+            </span>
+            <span class="nav-link-inner--text">Ingresar</span>
+          </a> -->
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

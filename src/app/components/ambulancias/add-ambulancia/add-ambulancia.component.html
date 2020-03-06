@@ -1,3 +1,334 @@
-<p>
-  add-ambulancia works!
-</p>
+<app-dashnav></app-dashnav>
+<main>
+  <section class="section section-lg bg-gradient-default">
+    <div class="container pt-sm-0 pb-0">
+      <div class="row text-center justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="display-3 text-white">Agregar ambulancia</h2>
+        </div>
+      </div>
+    </div>
+    <div class="separator separator-bottom separator-skew zindex-100">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+
+    <hr>
+    <div class="container">
+      <form (ngSubmit)="insertar()"
+            #forma="ngForm">    
+        <div>
+          <div class="form-group row">
+            <label for="tipo" class="col-2 col-form-label text-white text-white">Tipo</label>
+            <div class="col-6">
+              <select id="tipo" class="form-control"
+                      name="tipo"
+                      [(ngModel)]="ambulancia.tipo" required
+                      #tipo="ngModel" >
+                <option value="">Seleccione un tipo</option>
+                <option *ngFor="let s of tipos" [value]="s.nombre">{{s.nombre}}</option>
+              </select>
+              <div *ngIf="tipo.errors && tipo.touched" class="alert alert-danger">
+                <div [hidden]="!tipo.errors.required">El campo tipo es requerido</div>
+              </div>
+            </div>
+            <label class="col-1 col-form-label text-white">Matrícula</label>
+            <div class="col-3">
+              <input  class="form-control"
+                      type="text"
+                      [(ngModel)]="ambulancia.matricula"
+                      #matricula="ngModel"
+                      name="matricula"
+                      id="matricula"
+                      placeholder="Matrícula"
+                      minlength="5" 
+                      maxlength="8"
+                      required>
+              <div *ngIf="matricula.errors && (matricula.dirty || matricula.touched)"
+                    class="alert alert-danger">
+                <div [hidden]="!matricula.errors.required">
+                  Este campo es requerido
+                </div>
+                <div [hidden]="!matricula.errors.minlength">
+                  Este campo debe tener al menos 5 caracteres de longitud.
+                </div>
+                <div [hidden]="!matricula.errors.maxlength">
+                  Este campo debe tener máximo 8 caracteres de longitud.
+                </div>
+              </div> 
+            </div>
+          </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label text-white">Capacidad</label>
+                <div class="col-2">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.capacidad"
+                            #capacidad="ngModel"
+                            name="capacidad"
+                            id="capacidad"
+                            placeholder="Capacidad"
+                            minlength="1" 
+                            maxlength="1"
+                            pattern="[0-9]{1,1}$"
+                            required>
+                    <div *ngIf="capacidad.errors && (capacidad.dirty || capacidad.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!capacidad.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!capacidad.errors.pattern">
+                            Este campo solo acepta un dígito.
+                        </div>
+                        <div [hidden]="!capacidad.errors.minlength">
+                            Este campo debe tener exactamente 1 dígito.
+                        </div>
+                        <div [hidden]="!capacidad.errors.maxlength">
+                            Este campo debe tener exactamente 1 dígito.
+                        </div>
+                    </div> 
+                </div>
+            <!-- </div>
+            <div class="form-group row"> -->
+                <label class="col-1 col-form-label text-white">Marca</label>
+                <div class="col-3">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.marca"
+                            #marca="ngModel"
+                            name="marca"
+                            id="marca"
+                            placeholder="Marca"
+                            minlength="4" 
+                            maxlength="24"
+                            required>
+                    <div *ngIf="marca.errors && (marca.dirty || marca.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!marca.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!marca.errors.minlength">
+                            Este campo debe tener al menos 4 caracteres de longitud.
+                        </div>
+                        <div [hidden]="!marca.errors.maxlength">
+                            Este campo debe tener máximo 24 caracteres de longitud.
+                        </div>
+                    </div> 
+                </div>
+            <!-- </div>
+            <div class="form-group row"> -->
+                <label class="col-1 col-form-label text-white">Modelo</label>
+                <div class="col-3">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.modelo"
+                            #modelo="ngModel"
+                            name="modelo"
+                            id="modelo"
+                            placeholder="Modelo"
+                            minlength="4"
+                            maxlength="4"
+                            pattern="[0-9]{1,4}$"
+                            required>
+                    <div *ngIf="modelo.errors && (modelo.dirty || modelo.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!modelo.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!modelo.errors.pattern">
+                            Este campo solo acepta números.
+                        </div>
+                        <div [hidden]="!modelo.errors.minlength">
+                            Este campo debe tener al menos 4 caracteres de longitud.
+                        </div>
+                        <div [hidden]="!modelo.errors.maxlength">
+                            Este campo debe tener máximo 4 caracteres de longitud.
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label text-white">Equipamiento</label>
+                <div class="col-10">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.equipamiento"
+                            #equipamiento="ngModel"
+                            name="equipamiento"
+                            id="equipamiento"
+                            placeholder="Equipamiento"
+                            minlength="20" 
+                            maxlength="250"
+                            required>
+                    <div *ngIf="equipamiento.errors && (equipamiento.dirty || equipamiento.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!equipamiento.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!equipamiento.errors.minlength">
+                            Este campo debe tener al menos 20 caracteres de longitud.
+                        </div>
+                        <div [hidden]="!equipamiento.errors.maxlength">
+                            Este campo debe tener máximo 250 caracteres de longitud.
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label text-white">Horario servicio</label>
+                <div class="col-4">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.horario_servicio"
+                            #horario_servicio="ngModel"
+                            name="horario_servicio"
+                            id="horario_servicio"
+                            placeholder="Horario servicio"
+                            minlength="2" 
+                            maxlength="20"
+                            required>
+                    <div *ngIf="horario_servicio.errors && (horario_servicio.dirty || horario_servicio.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!horario_servicio.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!horario_servicio.errors.minlength">
+                            Este campo debe tener al menos 2 caracteres de longitud.
+                        </div>
+                        <div [hidden]="!horario_servicio.errors.maxlength">
+                            Este campo debe tener máximo 20 caracteres de longitud.
+                        </div>
+                    </div> 
+                </div>
+            <!-- </div>
+            <div class="form-group row"> -->
+                <label class="col-2 col-form-label text-white">Conductor</label>
+                <div class="col-4">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.conductor"
+                            #conductor="ngModel"
+                            name="conductor"
+                            id="conductor"
+                            placeholder="Conductor"
+                            minlength="10" 
+                            maxlength="80"
+                            required>
+                    <div *ngIf="conductor.errors && (conductor.dirty || conductor.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!conductor.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!conductor.errors.minlength">
+                            Este campo debe tener al menos 10 caracteres de longitud.
+                        </div>
+                        <div [hidden]="!conductor.errors.maxlength">
+                            Este campo debe tener máximo 80 caracteres de longitud.
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label text-white">Número de licencia</label>
+                <div class="col-4">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.numero_de_licencia"
+                            #numero_de_licencia="ngModel"
+                            name="numero_de_licencia"
+                            id="numero_de_licencia"
+                            placeholder="Número de licencia"
+                            minlength="4" 
+                            maxlength="24"
+                            required>
+                    <div *ngIf="numero_de_licencia.errors && (numero_de_licencia.dirty || numero_de_licencia.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!numero_de_licencia.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!numero_de_licencia.errors.minlength">
+                            Este campo debe tener al menos 4 caracteres de longitud.
+                        </div>
+                        <div [hidden]="!numero_de_licencia.errors.maxlength">
+                            Este campo debe tener máximo 24 caracteres de longitud.
+                        </div>
+                    </div> 
+                </div>
+            <!-- </div>
+            <div class="form-group row"> -->
+                <label class="col-2 col-form-label text-white">Celular de contacto</label>
+                <div class="col-4">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.celular_de_contacto"
+                            #celular_de_contacto="ngModel"
+                            name="celular_de_contacto"
+                            id="celular_de_contacto"
+                            placeholder="Celular de contacto"
+                            minlength="10" 
+                            maxlength="10"
+                            pattern="[0-9]{1,10}$"
+                            required>
+                    <div *ngIf="celular_de_contacto.errors && (celular_de_contacto.dirty || celular_de_contacto.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!celular_de_contacto.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!celular_de_contacto.errors.pattern">
+                            Este campo solo acepta números.
+                        </div>
+                        <div [hidden]="!celular_de_contacto.errors.minlength">
+                            Este campo debe tener exactamente 10 dígitos.
+                        </div>
+                        <div [hidden]="!celular_de_contacto.errors.maxlength">
+                            Este campo debe tener exactamente 10 dígitos.
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label text-white">Responsable</label>
+                <div class="col-10">
+                    <input  class="form-control"
+                            type="text"
+                            [(ngModel)]="ambulancia.responsable"
+                            #responsable="ngModel"
+                            name="responsable"
+                            id="responsable"
+                            placeholder="Responsable"
+                            minlength="20"
+                            maxlength="80"
+                            required>
+                    <div *ngIf="responsable.errors && (responsable.dirty || responsable.touched)"
+                        class="alert alert-danger">
+                        <div [hidden]="!responsable.errors.required">
+                            Este campo es requerido
+                        </div>
+                        <div [hidden]="!responsable.errors.minlength">
+                            Este campo debe tener al menos 20 caracteres de longitud.
+                        </div>
+                        <div [hidden]="!responsable.errors.maxlength">
+                            Este campo debe tener máximo 80 caracteres de longitud.
+                        </div>
+                    </div> 
+                </div>
+            </div>
+          </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-8">
+                <button [disabled]="!forma.valid"
+                        type="submit"
+                        class="btn btn-outline-primary">
+                        Guardar
+                </button>
+            </div>
+        </div>
+
+      </form>
+    </div>
+
+  </section>
+</main>

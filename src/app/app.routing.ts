@@ -105,7 +105,7 @@ const routes: Routes =[
     { path: 'list-pagos',       component: ListPagosComponent, canActivate: [ AuthGuard ] },
     { path: '',             component: InicioComponent },
     { path: 'inicio',       component: InicioComponent },
-    // { path: 'home',         component: HomeComponent },
+    { path: 'home',         component: HomeComponent },
     { path: 'user-profile', component: ProfileComponent, canActivate: [ AuthGuard ] },
     { path: 'register',     component: SignupComponent },
     { path: 'landing',      component: LandingComponent },

@@ -12,4 +12,8 @@ export class AddAmbulanciaComponent implements OnInit {
   ngOnInit() {
   }
 
+  insertar() {
+    
+  }
+
 }

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -16,51 +17,53 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { AmbulanciasComponent } from './ambulancias/ambulancias.component';
-import { AddAmbulanciaComponent } from './ambulancias/add-ambulancia/add-ambulancia.component';
-import { ListAmbulanciasComponent } from './ambulancias/list-ambulancias/list-ambulancias.component';
-import { TrackingAmbulanciasComponent } from './ambulancias/tracking-ambulancias/tracking-ambulancias.component';
-import { MedicosComponent } from './medicos/medicos.component';
-import { AddMedicoComponent } from './medicos/add-medico/add-medico.component';
-import { ListMedicosComponent } from './medicos/list-medicos/list-medicos.component';
-import { HospitalesComponent } from './hospitales/hospitales.component';
-import { AddHospitalComponent } from './hospitales/add-hospital/add-hospital.component';
-import { ListHospitalesComponent } from './hospitales/list-hospitales/list-hospitales.component';
-import { ClinicasComponent } from './clinicas/clinicas.component';
-import { AddClinicaComponent } from './clinicas/add-clinica/add-clinica.component';
-import { ListClinicasComponent } from './clinicas/list-clinicas/list-clinicas.component';
-import { FarmaciasComponent } from './farmacias/farmacias.component';
-import { AddFarmaciaComponent } from './farmacias/add-farmacia/add-farmacia.component';
-import { ListFarmaciasComponent } from './farmacias/list-farmacias/list-farmacias.component';
-import { LaboratoriosComponent } from './laboratorios/laboratorios.component';
-import { AddLaboratorioComponent } from './laboratorios/add-laboratorio/add-laboratorio.component';
-import { ListLaboratoriosComponent } from './laboratorios/list-laboratorios/list-laboratorios.component';
-import { TerapeutasComponent } from './terapeutas/terapeutas.component';
-import { AddTerapeutaComponent } from './terapeutas/add-terapeuta/add-terapeuta.component';
-import { ListTerapeutasComponent } from './terapeutas/list-terapeutas/list-terapeutas.component';
-import { EditAmbulanciaComponent } from './ambulancias/edit-ambulancia/edit-ambulancia.component';
-import { EditMedicoComponent } from './medicos/edit-medico/edit-medico.component';
-import { EditHospitalComponent } from './hospitales/edit-hospital/edit-hospital.component';
-import { EditClinicaComponent } from './clinicas/edit-clinica/edit-clinica.component';
-import { EditFarmaciaComponent } from './farmacias/edit-farmacia/edit-farmacia.component';
-import { EditLaboratorioComponent } from './laboratorios/edit-laboratorio/edit-laboratorio.component';
-import { EditTerapeutaComponent } from './terapeutas/edit-terapeuta/edit-terapeuta.component';
-import { EditSuscripcionComponent } from './suscripciones/edit-suscripcion/edit-suscripcion.component';
-import { EditUsuarioComponent } from './usuarios/edit-usuario/edit-usuario.component';
-import { EditCobroComponent } from './cobros/edit-cobro/edit-cobro.component';
-import { EditPagoComponent } from './pagos/edit-pago/edit-pago.component';
-import { SuscripcionesComponent } from './suscripciones/suscripciones.component';
-import { AddSuscripcionComponent } from './suscripciones/add-suscripcion/add-suscripcion.component';
-import { ListSuscripcionesComponent } from './suscripciones/list-suscripciones/list-suscripciones.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
-import { AddUsuarioComponent } from './usuarios/add-usuario/add-usuario.component';
-import { ListUsuariosComponent } from './usuarios/list-usuarios/list-usuarios.component';
-import { CobrosComponent } from './cobros/cobros.component';
-import { AddCobroComponent } from './cobros/add-cobro/add-cobro.component';
-import { ListCobrosComponent } from './cobros/list-cobros/list-cobros.component';
-import { PagosComponent } from './pagos/pagos.component';
-import { AddPagoComponent } from './pagos/add-pago/add-pago.component';
-import { ListPagosComponent } from './pagos/list-pagos/list-pagos.component';
+import { AmbulanciasComponent } from './components/ambulancias/ambulancias.component';
+import { AddAmbulanciaComponent } from './components/ambulancias/add-ambulancia/add-ambulancia.component';
+import { ListAmbulanciasComponent } from './components/ambulancias/list-ambulancias/list-ambulancias.component';
+import { TrackingAmbulanciasComponent } from './components/ambulancias/tracking-ambulancias/tracking-ambulancias.component';
+import { MedicosComponent } from './components/medicos/medicos.component';
+import { AddMedicoComponent } from './components/medicos/add-medico/add-medico.component';
+import { ListMedicosComponent } from './components/medicos/list-medicos/list-medicos.component';
+import { HospitalesComponent } from './components/hospitales/hospitales.component';
+import { AddHospitalComponent } from './components/hospitales/add-hospital/add-hospital.component';
+import { ListHospitalesComponent } from './components/hospitales/list-hospitales/list-hospitales.component';
+import { ClinicasComponent } from './components/clinicas/clinicas.component';
+import { AddClinicaComponent } from './components/clinicas/add-clinica/add-clinica.component';
+import { ListClinicasComponent } from './components/clinicas/list-clinicas/list-clinicas.component';
+import { FarmaciasComponent } from './components/farmacias/farmacias.component';
+import { AddFarmaciaComponent } from './components/farmacias/add-farmacia/add-farmacia.component';
+import { ListFarmaciasComponent } from './components/farmacias/list-farmacias/list-farmacias.component';
+import { LaboratoriosComponent } from './components/laboratorios/laboratorios.component';
+import { AddLaboratorioComponent } from './components/laboratorios/add-laboratorio/add-laboratorio.component';
+import { ListLaboratoriosComponent } from './components/laboratorios/list-laboratorios/list-laboratorios.component';
+import { TerapeutasComponent } from './components/terapeutas/terapeutas.component';
+import { AddTerapeutaComponent } from './components/terapeutas/add-terapeuta/add-terapeuta.component';
+import { ListTerapeutasComponent } from './components/terapeutas/list-terapeutas/list-terapeutas.component';
+import { EditAmbulanciaComponent } from './components/ambulancias/edit-ambulancia/edit-ambulancia.component';
+import { EditMedicoComponent } from './components/medicos/edit-medico/edit-medico.component';
+import { EditHospitalComponent } from './components/hospitales/edit-hospital/edit-hospital.component';
+import { EditClinicaComponent } from './components/clinicas/edit-clinica/edit-clinica.component';
+import { EditFarmaciaComponent } from './components/farmacias/edit-farmacia/edit-farmacia.component';
+import { EditLaboratorioComponent } from './components/laboratorios/edit-laboratorio/edit-laboratorio.component';
+import { EditTerapeutaComponent } from './components/terapeutas/edit-terapeuta/edit-terapeuta.component';
+import { EditSuscripcionComponent } from './components/suscripciones/edit-suscripcion/edit-suscripcion.component';
+import { EditUsuarioComponent } from './components/usuarios/edit-usuario/edit-usuario.component';
+import { EditCobroComponent } from './components/cobros/edit-cobro/edit-cobro.component';
+import { EditPagoComponent } from './components/pagos/edit-pago/edit-pago.component';
+import { SuscripcionesComponent } from './components/suscripciones/suscripciones.component';
+import { AddSuscripcionComponent } from './components/suscripciones/add-suscripcion/add-suscripcion.component';
+import { ListSuscripcionesComponent } from './components/suscripciones/list-suscripciones/list-suscripciones.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { AddUsuarioComponent } from './components/usuarios/add-usuario/add-usuario.component';
+import { ListUsuariosComponent } from './components/usuarios/list-usuarios/list-usuarios.component';
+import { CobrosComponent } from './components/cobros/cobros.component';
+import { AddCobroComponent } from './components/cobros/add-cobro/add-cobro.component';
+import { ListCobrosComponent } from './components/cobros/list-cobros/list-cobros.component';
+import { PagosComponent } from './components/pagos/pagos.component';
+import { AddPagoComponent } from './components/pagos/add-pago/add-pago.component';
+import { ListPagosComponent } from './components/pagos/list-pagos/list-pagos.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashnavComponent } from './shared/dashnav/dashnav.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +119,9 @@ import { ListPagosComponent } from './pagos/list-pagos/list-pagos.component';
     ListCobrosComponent,
     PagosComponent,
     AddPagoComponent,
-    ListPagosComponent
+    ListPagosComponent,
+    DashboardComponent,
+    DashnavComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +129,8 @@ import { ListPagosComponent } from './pagos/list-pagos/list-pagos.component';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,6 @@
+<app-navbar *ngIf="!isSignIn"></app-navbar>
+<app-dashnav *ngIf="isSignIn"></app-dashnav>
+<!-- VALOR DE LOGGED: {{ isLogged }} - VALOR DE SIGNED: {{ isSignIn }} -->
 <main>
   <section class="section section-shaped section-lg">
     <div class="shape shape-style-1 bg-gradient-default">
@@ -14,7 +17,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-5">
           <div class="card bg-secondary shadow border-0">
-            <div class="card-header bg-white pb-5">
+            <!-- <div class="card-header bg-white pb-5">
               <div class="text-muted text-center mb-3">
                 <small>Sign up with</small>
               </div>
@@ -32,42 +35,96 @@
                   <span class="btn-inner--text">Google</span>
                 </a>
               </div>
-            </div>
+            </div> -->
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>Or sign up with credentials</small>
+                <small>Ingrese sus datos:</small>
               </div>
-              <form role="form">
+              <form
+                (ngSubmit)="onSubmit( f )"
+                #f="ngForm"
+                role="form"
+                class="validate-form"
+              >
+                <span 
+                  *ngIf="f.submitted && f.controls['nombres'].errors"
+                  class="text-danger animated fadeIn">
+                    El nombre es obligatorio
+                </span>
                 <div class="form-group" [ngClass]="{'focused':focus===true}">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false">
+                    <input [(ngModel)]="usuario.nombres" name="nombres" class="form-control" minlength="2" placeholder="Nombres" type="text" (focus)="focus=true" (blur)="focus=false" required>
                   </div>
                 </div>
+                <span 
+                  *ngIf="f.submitted && f.controls['apellido_paterno'].errors"
+                  class="text-danger animated fadeIn">
+                    El apellido paterno es obligatorio
+                </span>
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    <input [(ngModel)]="usuario.apellido_paterno" name="apellido_paterno" class="form-control" minlength="2" placeholder="Apellido paterno" type="text" (focus)="focus1=true" (blur)="focus1=false" required>
+                  </div>
+                </div>
+                <div class="form-group" [ngClass]="{'focused':focus2===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    <input [(ngModel)]="usuario.apellido_materno" name="apellido_materno" class="form-control" placeholder="Apellido materno" type="text" (focus)="focus2=true" (blur)="focus2=false">
+                  </div>
+                </div>
+                <span 
+                  *ngIf="f.submitted && f.controls['celular'].errors"
+                  class="text-danger animated fadeIn">
+                    El celular es obligatorio
+                </span>
+                <div class="form-group" [ngClass]="{'focused':focus3===true}">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                    </div>
+                    <input [(ngModel)]="usuario.celular" name="celular" class="form-control" minlength="2" placeholder="Celular" type="text" (focus)="focus3=true" (blur)="focus3=false" required>
+                  </div>
+                </div>
+                <span 
+                  *ngIf="f.submitted && f.controls['email'].errors"
+                  class="text-danger animated fadeIn">
+                    El correo electrónico es obligatorio
+                </span>
+                <div class="form-group" [ngClass]="{'focused':focus4===true}">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email" (focus)="focus1=true" (blur)="focus1=false">
+                    <input [(ngModel)]="usuario.email" email name="email" class="form-control" placeholder="Correo electrónico" type="email" (focus)="focus4=true" (blur)="focus4=false" required>
                   </div>
                 </div>
-                <div class="form-group" [ngClass]="{'focused':focus2===true}">
+                <span 
+                  *ngIf="f.submitted && f.controls['password'].errors"
+                  class="text-danger animated fadeIn">
+                  Ingrese al menos 8 caracteres
+                </span>
+                <div class="form-group" [ngClass]="{'focused':focus5===true}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password" (focus)="focus2=true" (blur)="focus2=false">
+                    <input [(ngModel)]="usuario.password" name="password" class="form-control" minlength="8" placeholder="Contraseña" type="password" (focus)="focus5=true" (blur)="focus5=false" required>
                   </div>
                 </div>
-                <div class="text-muted font-italic">
+                <!-- <div class="text-muted font-italic">
                   <small>password strength:
                     <span class="text-success font-weight-700">strong</span>
                   </small>
-                </div>
-                <div class="row my-4">
+                </div> -->
+                <!-- <div class="row my-4">
                   <div class="col-12">
                     <div class="custom-control custom-control-alternative custom-checkbox">
                       <input class="custom-control-input" id="customCheckRegister" type="checkbox">
@@ -78,11 +135,24 @@
                       </label>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4">Create account</button>
+                  <button type="submit" class="btn btn-primary mt-4">Crear nueva cuenta</button>
                 </div>
               </form>
+            </div>
+          </div>
+          
+          <div class="row mt-3">
+            <div class="col-6">
+              <a [routerLink]="['/recovery']" class="text-light">
+                <small>Recuperar contraseña</small>
+              </a>
+            </div>
+            <div class="col-6 text-right">
+              <a [routerLink]="['/login']" class="text-light">
+                <small>Iniciar sesión</small>
+              </a>
             </div>
           </div>
         </div>

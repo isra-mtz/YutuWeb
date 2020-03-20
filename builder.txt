@@ -43,3 +43,15 @@ ng generate component cobros/list-cobros
 ng generate component pagos
 ng generate component pagos/add-pago
 ng generate component pagos/list-pagos
+
+ng generate service services/ambulancias
+ng generate service services/medicos
+ng generate service services/hospitales
+ng generate service services/clinicas
+ng generate service services/farmacias
+ng generate service services/laboratorios
+ng generate service services/terapeutas
+ng generate service services/suscripciones
+ng generate service services/usuarios
+ng generate service services/cobros
+ng generate service services/pagos

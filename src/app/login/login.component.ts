@@ -48,11 +48,11 @@ export class LoginComponent implements OnInit {
     // console.log(this.usuario);
     this.auth.login( this.usuario )
         .subscribe( resp => {
-          console.log(resp);
+          // console.log(resp);
           Swal.close();
           this.router.navigateByUrl('/inicio');
         }, (err) => {
-          console.log(err.error.error.message);
+          // console.log(err.error.error.message);
           Swal.fire({
             allowOutsideClick: true,
             title: 'Error al autenticar',

@@ -14,6 +14,10 @@ export class AuthService {
 
   userToken: string;
   isSignIn = false;
+  usuario: any = {
+    uid: '',
+    email: '',
+  };
 
   // Crear nuevo usuario
   // https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
@@ -44,7 +48,11 @@ export class AuthService {
       authData
     ).pipe(
       map( resp => {
-        console.log('Entró en el mapa del RXJS')
+        // console.log('RESPUESTA DEL LOGIN : ');
+        this.usuario.uid = resp['localId'];
+        this.usuario.email = resp['email'];
+        // console.log(this.usuario);
+        // console.log(resp);
         this.guardarToken( resp['idToken']);
         this.isSignIn = true;
         return resp;
@@ -57,13 +65,12 @@ export class AuthService {
       ...usuario,
       returnSecureToken: true
     };
-
     return this.http.post(
       `${ this.url }signUp?key=${ this.apikey }`,
       authData
     ).pipe(
       map( resp => {
-        console.log('Entró en el mapa del RXJS')
+        // console.log('Entró en el mapa del RXJS')
         this.guardarToken( resp['idToken']);
         return resp;
       }),
